@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calcium", "Calcium\Calcium.csproj", "{8016DBB2-B1F1-4D09-A042-E56B3A69BE71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlowClock", "SlowClock\SlowClock.csproj", "{4BCA969C-9043-44EA-9213-7A725CA278AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8016DBB2-B1F1-4D09-A042-E56B3A69BE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8016DBB2-B1F1-4D09-A042-E56B3A69BE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8016DBB2-B1F1-4D09-A042-E56B3A69BE71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BCA969C-9043-44EA-9213-7A725CA278AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BCA969C-9043-44EA-9213-7A725CA278AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BCA969C-9043-44EA-9213-7A725CA278AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BCA969C-9043-44EA-9213-7A725CA278AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
