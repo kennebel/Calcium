@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalciumModule.cs" />
     <Compile Include="ClockUI.xaml.cs">
       <DependentUpon>ClockUI.xaml</DependentUpon>
     </Compile>
@@ -79,6 +80,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stopwatch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Calcium\Calcium.csproj">
+      <Project>{8016dbb2-b1f1-4d09-a042-e56b3a69be71}</Project>
+      <Name>Calcium</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

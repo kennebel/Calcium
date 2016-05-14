@@ -9,6 +9,11 @@
       Title="ClockUI">
 
     <Grid>
-        
+        <Viewbox>
+            <Grid>
+                <Image Source="Resources/stopwatch.png" />
+                <Canvas Name="TickLayer" />
+            </Grid>
+        </Viewbox>
     </Grid>
 </Page>
