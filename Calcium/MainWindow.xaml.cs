@@ -23,6 +23,8 @@ namespace Calcium
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			Overlay.Navigate(new TestOverlay());
 		}
 	}
 }
