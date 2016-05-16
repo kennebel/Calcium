@@ -41,24 +41,32 @@ namespace Calcium
 			DrawTicks();
 		}
 
+		// Inspiration pulled from Stopwatch Netbeans projec.
 		public void DrawTicks()
 		{
-			for (int i = 0; i < 12; i++)
+			int MainTIcks = 12;
+			int MinorTicks = 60;
+			double Angle = 0d;
+
+			for (int i = 0; i < MainTIcks; i++)
 			{
-				double angle = (360 / 12) * i;
-				DrawOneTick(angle, Radius / 10, 1.5);
+				Angle = (360 / MainTIcks) * i;
+				DrawOneTick(Angle, Radius / 10, 1.5);
 			}
-			//DrawOneTick(0, Radius / 10, 1.5);
-			//DrawOneTick(90, Radius / 10, 1.5);
+			for (int i = 0; i < MinorTicks; i++)
+			{
+				Angle = (360 / MinorTicks) * i;
+				DrawOneTick(Angle, Radius / 20, 1);
+			}
 		}
 
 		public void DrawOneTick(double angle, double width, double height)
 		{
-			Rectangle rect = new Rectangle() { Width = width, Height = height, Fill = Brushes.LightGray };
-			rect.RenderTransformOrigin = new Point(0.5d, 0.5d);
+			Rectangle rect = new Rectangle() { Width = width, Height = height, Fill = Brushes.Black };
+			//rect.RenderTransformOrigin = new Point(0.5d, 0.5d);
 			TransformGroup TG = new TransformGroup();
 			TG.Children.Add(new RotateTransform(angle));
-			TG.Children.Add(new TranslateTransform((Radius * Math.Cos(angle.ToRadians())) + Radius, (Radius * Math.Sin(angle.ToRadians())) + Radius));
+			TG.Children.Add(new TranslateTransform((Radius * Math.Cos(angle.ToRadians())) + Radius + width, (Radius * Math.Sin(angle.ToRadians())) + Radius + height));
 			rect.RenderTransform = TG;
 			
 			TickLayer.Children.Add(rect);
