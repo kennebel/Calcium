@@ -9,7 +9,8 @@
       Title="TestOverlay">
 
     <Grid>
-                <Ellipse Fill="AliceBlue" Height="30" Width="30" />
-                <Canvas Name="TickLayer" />
+        <Viewbox>
+            <Canvas Name="TickLayer" Width="160" Height="160" />
+        </Viewbox>
     </Grid>
 </Page>

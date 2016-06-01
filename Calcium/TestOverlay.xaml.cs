@@ -36,7 +36,7 @@ namespace Calcium
 		#region Methods
 		public void Init()
 		{
-			Radius = 150d;
+			Radius = 75d;
 
 			DrawTicks();
 		}
@@ -51,24 +51,33 @@ namespace Calcium
 			for (int i = 0; i < MainTIcks; i++)
 			{
 				Angle = (360 / MainTIcks) * i;
-				DrawOneTick(Angle, Radius / 10, 1.5);
+				DrawOneTick(Angle, Radius / 20d, fill: Brushes.Blue);
+				Console.WriteLine(Angle);
 			}
 			for (int i = 0; i < MinorTicks; i++)
 			{
 				Angle = (360 / MinorTicks) * i;
-				DrawOneTick(Angle, Radius / 20, 1);
+				DrawOneTick(Angle, Radius / 40d);
+				Console.WriteLine(Angle);
 			}
 		}
 
-		public void DrawOneTick(double angle, double width, double height)
+		public void DrawOneTick(double angle, double width, double height = 0d, Brush fill = null)
 		{
-			Rectangle rect = new Rectangle() { Width = width, Height = height, Fill = Brushes.Black };
+			if (height == 0d) { height = width; }
+			if (fill == null) { fill = Brushes.Black; }
+
+			//Rectangle rect = new Rectangle() { Width = width, Height = height, Fill = fill, RenderTransformOrigin= new Point(0.5d, 0.5d) };
+			Ellipse rect = new Ellipse() { Width = width, Height = height, Fill = fill, RenderTransformOrigin= new Point(0.5d, 0.5d) };
 			//rect.RenderTransformOrigin = new Point(0.5d, 0.5d);
-			TransformGroup TG = new TransformGroup();
-			TG.Children.Add(new RotateTransform(angle));
-			TG.Children.Add(new TranslateTransform((Radius * Math.Cos(angle.ToRadians())) + Radius + width, (Radius * Math.Sin(angle.ToRadians())) + Radius + height));
-			rect.RenderTransform = TG;
-			
+			//TransformGroup TG = new TransformGroup();
+			//TG.Children.Add(new RotateTransform(angle < 180 ? angle : angle - 180d));
+			//TG.Children.Add(new RotateTransform(angle));
+			//TG.Children.Add(new TranslateTransform((Radius * Math.Cos(angle.ToRadians())) + Radius, (Radius * Math.Sin(angle.ToRadians())) + Radius));
+			//rect.RenderTransform = TG;
+			rect.RenderTransform = new TranslateTransform((Radius * Math.Cos(angle.ToRadians())) + Radius, (Radius * Math.Sin(angle.ToRadians())) + Radius);
+
+
 			TickLayer.Children.Add(rect);
 		}
 		#endregion
