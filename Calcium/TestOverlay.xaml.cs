@@ -58,12 +58,8 @@ namespace Calcium
 			{
 				Angle = (360 / MinorTicks) * i;
 				DrawOneTick(Angle, Radius / 40d);
+				DrawOneTick(Angle, Radius / 40d, fill: Brushes.Orange);
 				Console.WriteLine(Angle);
-			}
-			for (int i = 0; i < MinorTicks; i++)
-			{
-				Angle = (360 / MinorTicks) * i;
-				DrawOneTick(Angle, Radius / 40d, fill:Brushes.Orange);
 			}
 		}
 
@@ -74,7 +70,7 @@ namespace Calcium
 
 			//Rectangle rect = new Rectangle() { Width = width, Height = height, Fill = fill, RenderTransformOrigin= new Point(0.5d, 0.5d) };
 			Ellipse rect = new Ellipse() { Width = width, Height = height, Fill = fill };
-			rect.RenderTransformOrigin = fill != Brushes.Blue ? new Point(0.5d, 0.5d) : new Point(1d, 1d);
+			rect.RenderTransformOrigin = fill == Brushes.Black ? new Point(0d, 0d) : new Point(1d, 1d);
 			//TransformGroup TG = new TransformGroup();
 			//TG.Children.Add(new RotateTransform(angle < 180 ? angle : angle - 180d));
 			//TG.Children.Add(new RotateTransform(angle));
