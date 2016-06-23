@@ -26,6 +26,14 @@ namespace Calcium
         public double LargeDot { get; set; }
         public double SmallDot { get; set; }
 
+        public double Offset
+        {
+            get
+            {
+                return LargeDot / 2d;
+            }
+        }
+
         public Line SlowHand { get; set; }
 
         public DispatcherTimer MoveHandTimer { get; set; }
@@ -48,7 +56,7 @@ namespace Calcium
             SmallDot = 1.9d;
 
 			DrawTicks();
-            DrawHand(new TimeSpan(13, 15, 0));
+            DrawHand(new TimeSpan(12, 0, 0));
 
             //MoveHandTimer = new DispatcherTimer() { Interval = new TimeSpan(0, 1, 0) };
             MoveHandTimer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 10) };
@@ -101,7 +109,7 @@ namespace Calcium
             rect.HorizontalAlignment = HorizontalAlignment.Center;
             rect.VerticalAlignment = VerticalAlignment.Center;
             child.Children.Add(rect);
-            child.RenderTransform = new TranslateTransform((Radius * Math.Cos(angle.ToRadians())) + Radius, (Radius * Math.Sin(angle.ToRadians())) + Radius);
+            child.RenderTransform = new TranslateTransform((Radius * Math.Cos(angle.ToRadians())) + Radius - Offset, (Radius * Math.Sin(angle.ToRadians())) + Radius - Offset);
 
             TickLayer.Children.Add(child);
 		}
@@ -131,10 +139,10 @@ namespace Calcium
 
             double Offset = LargeDot / 2d;
             double Angle = (360d * normalized24HourTime.Value) - 90d;
-            SlowHand.X1 = Radius + Offset;
-            SlowHand.Y1 = Radius + Offset;
-            SlowHand.X2 = (Radius * Math.Cos(Angle.ToRadians())) + Radius + Offset;
-            SlowHand.Y2 = (Radius * Math.Sin(Angle.ToRadians())) + Radius + Offset;
+            SlowHand.X1 = Radius;
+            SlowHand.Y1 = Radius;
+            SlowHand.X2 = (Radius * Math.Cos(Angle.ToRadians())) + Radius;
+            SlowHand.Y2 = (Radius * Math.Sin(Angle.ToRadians())) + Radius;
         }
 		#endregion
 	}
