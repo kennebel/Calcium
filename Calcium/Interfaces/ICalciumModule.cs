@@ -11,6 +11,8 @@ namespace Calcium
 	{
 		string ModuleType { get; }
 
+        string ModuleName { get; }
+
 		Page OpeningPage { get; }
 	}
 }

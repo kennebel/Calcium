@@ -22,6 +22,14 @@ namespace Calcium.SlowClock
 			}
 		}
 
+        public string ModuleName
+        {
+            get
+            {
+                return "SlowClock";
+            }
+        }
+
 		public Page OpeningPage
 		{
 			get

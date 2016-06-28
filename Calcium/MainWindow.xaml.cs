@@ -20,11 +20,24 @@ namespace Calcium
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+        #region Properties
+        public ModuleManager MM { get; protected set; }
+        #endregion
+
+        #region Construct / Destruct
+        public MainWindow()
 		{
 			InitializeComponent();
 
-			Overlay.Navigate(new TestOverlay());
+            // Load Modules
+            MM = new ModuleManager();
+
+            // Pop Overlay Screen
+            if (MM.Overlay != null)
+            {
+                Overlay.Navigate(MM.Overlay);
+            }
 		}
-	}
+        #endregion
+    }
 }
