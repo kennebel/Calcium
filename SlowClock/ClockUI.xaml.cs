@@ -67,18 +67,22 @@ namespace Calcium.SlowClock
         public void DrawTicks()
         {
             int MainTicks = 24;
-            int MinorTicks = 120;
+            int MinorTicks = 24;
             double Angle = 0d;
+
+			double Major = (360 / MainTicks);
+			double Minor = (360 / MinorTicks);
+			double MinorOffset = Minor / 2d;
 
             for (int i = 0; i < MinorTicks; i++)
             {
-                Angle = (360 / MinorTicks) * i;
+				Angle = (Minor * i) + MinorOffset;
                 DrawOneTick(Angle, SmallDot, fill: Brushes.LightGray);
                 Console.WriteLine(Angle);
             }
             for (int i = 0; i < MainTicks; i++)
             {
-                Angle = (360 / MainTicks) * i;
+                Angle = Major * i;
                 DrawOneTick(Angle, LargeDot);
                 Console.WriteLine(Angle);
             }
