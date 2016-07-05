@@ -22,6 +22,8 @@ namespace Calcium
 	{
         #region Properties
         public ModuleManager MM { get; protected set; }
+
+        public SettingsManager SM { get; set; } 
         #endregion
 
         #region Construct / Destruct
@@ -29,8 +31,9 @@ namespace Calcium
 		{
 			InitializeComponent();
 
-            // Load Modules
+            // Prep
             MM = new ModuleManager();
+            SM = SettingsManager.Load();
 
             // Pop Overlay Screen
             if (MM.Overlay != null)

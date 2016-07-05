@@ -62,9 +62,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IError.cs" />
+    <Compile Include="Interfaces\IErrorManager.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Support\ModuleManager.cs" />
-    <Compile Include="Support\Settings.cs" />
+    <Compile Include="Support\SettingsManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
