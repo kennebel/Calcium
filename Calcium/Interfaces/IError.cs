@@ -8,6 +8,10 @@ namespace Calcium
 {
     public interface IError
     {
+        string Message { get; set; }
+        DateTime ReportedOn { get; set; }
+        int Severity { get; set; }
 
+        string ToString();
     }
 }

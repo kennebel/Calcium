@@ -63,10 +63,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Interfaces\IError.cs" />
-    <Compile Include="Interfaces\IErrorManager.cs" />
-    <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Support\BaseNotify.cs" />
+    <Compile Include="Support\Error.cs" />
+    <Compile Include="Support\ErrorManager.cs" />
     <Compile Include="Support\ModuleManager.cs" />
     <Compile Include="Support\SettingsManager.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

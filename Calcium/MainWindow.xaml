@@ -8,5 +8,12 @@
         Title="MainWindow" Height="300" Width="300" Icon="Resources/calcium.ico">
     <Grid>
         <Frame Name="Overlay" NavigationUIVisibility="Hidden" />
+
+        <Viewbox Name="NotificationBadge" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="20" Height="20" Margin="5" Visibility="{Binding NoticeBadgeVisibility}" MouseUp="NotificationBadge_MouseUp">
+            <Grid Width="20" Height="20">
+                <Ellipse Fill="Red" Opacity="0.75" />
+                <TextBlock Text="{Binding NoticeBadgeCount}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </Viewbox>
     </Grid>
 </Window>

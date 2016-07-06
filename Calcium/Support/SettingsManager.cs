@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Calcium
 {
-    public class SettingsManager : ISettings
+    public class SettingsManager
     {
         public const string SETTINGS_FOLDER = "Calcium";
         public const string SETTINGS_FILE = "Calcium.jset";
@@ -59,7 +59,7 @@ namespace Calcium
             }
             catch (Exception ex)
             {
-                // TODO: Finish IError and raise an error
+                ErrorManager.Report(string.Format("Unable to load settings file ({0}): {1}", SettingsPath, ex.ToString()));
             }
             return new SettingsManager();
         }
@@ -79,7 +79,7 @@ namespace Calcium
             }
             catch (Exception ex)
             {
-                // TODO: Finish IError and raise an error
+                ErrorManager.Report(string.Format("Unable to save settings file ({0}): {1}", SettingsPath, ex.ToString()));
             }
         }
     }
