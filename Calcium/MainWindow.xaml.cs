@@ -56,13 +56,22 @@ namespace Calcium
         #region Events
         private void NotificationBadge_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            NotificationList.Visibility = Visibility.Visible;
+        }
 
+        private void CloseNotifications_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            NotificationList.Visibility = Visibility.Hidden;
+            ViewModel?.ClearNotifications();
         }
         #endregion
 
         #region Methods
         protected void SetUp()
         {
+            // Title Version
+            Title += ": " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
             // Prep
             MM = new ModuleManager();
             SM = SettingsManager.Load();

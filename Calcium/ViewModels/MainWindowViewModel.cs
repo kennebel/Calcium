@@ -48,6 +48,23 @@ namespace Calcium
                 _Errors = value ?? new List<string>();
             }
         }
+
+        public string Notifications
+        {
+            get
+            {
+                return string.Join("\r\n\r\n", Errors);
+            }
+        }
+        #endregion
+
+        #region Events
+        private void ErrorManager_ErrorReport(object sender, IError reported)
+        {
+            NoticeBadgeCount++;
+            Errors.Add(reported.ToString());
+            OnPropertyChanged("Notifications");
+        }
         #endregion
 
         #region Methods
@@ -56,10 +73,11 @@ namespace Calcium
             ErrorManager.ErrorReport += ErrorManager_ErrorReport;
         }
 
-        private void ErrorManager_ErrorReport(object sender, IError reported)
+        public void ClearNotifications()
         {
-            NoticeBadgeCount++;
-            Errors.Add(reported.ToString());
+            NoticeBadgeCount = 0;
+            Errors.Clear();
+            OnPropertyChanged("Notifications");
         }
         #endregion
     }
