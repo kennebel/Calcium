@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calcium"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
+        Title="Calcium" Height="300" Width="300"
+        Icon="Resources/calcium.ico">
     <Grid>
         <Frame Name="Overlay" NavigationUIVisibility="Hidden" />
+
+        <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="20" Height="20" Margin="5" Visibility="{Binding NoticeBadgeVisibility}" MouseUp="NotificationBadge_MouseUp">
+            <Grid Width="20" Height="20">
+                <Ellipse Fill="Red" Opacity="0.75" />
+                <TextBlock Text="{Binding NoticeBadgeCount}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </Viewbox>
+
+        <Grid Name="NotificationList" Visibility="Hidden">
+            <Rectangle Fill="Black" Opacity="0.75" />
+            <TextBox Margin="10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding Notifications, Mode=OneWay}" IsReadOnly="True" />
+            <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="20" Height="20" Margin="5" MouseUp="CloseNotifications_MouseUp">
+                <Grid Width="20" Height="20">
+                    <Rectangle Fill="Green" Opacity="0.75" />
+                    <TextBlock Text="X" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+            </Viewbox>
+        </Grid>
     </Grid>
 </Window>
