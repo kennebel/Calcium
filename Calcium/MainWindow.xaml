@@ -6,10 +6,18 @@
         xmlns:local="clr-namespace:Calcium"
         mc:Ignorable="d"
         Title="Calcium" Height="300" Width="300"
-        Icon="Resources/calcium.ico">
+        Icon="Resources/calcium.ico"
+        MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave">
     <Grid>
-        <Frame Name="Overlay" NavigationUIVisibility="Hidden" />
+        <!-- Region Underlay -->
+        <Frame Name="Underlay" NavigationUIVisibility="Hidden" />
+        <!-- EndRegion -->
+        
+        <!-- Region Overlay -->
+        <Frame Name="Overlay" NavigationUIVisibility="Hidden" Background="White" Visibility="{Binding OverlayVisibility}" />
+        <!-- EndRegion -->
 
+        <!-- Region Notifications -->
         <Viewbox HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="20" Height="20" Margin="5" Visibility="{Binding NoticeBadgeVisibility}" MouseUp="NotificationBadge_MouseUp">
             <Grid Width="20" Height="20">
                 <Ellipse Fill="Red" Opacity="0.75" />
@@ -27,5 +35,6 @@
                 </Grid>
             </Viewbox>
         </Grid>
+        <!-- EndRegion -->
     </Grid>
 </Window>

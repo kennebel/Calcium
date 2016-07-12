@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calcium.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,9 +34,13 @@ namespace Calcium
             }
         }
 
-        public ModuleManager MM { get; protected set; }
+        public ModuleManager TheModules { get; protected set; }
 
-        public SettingsManager SM { get; set; }
+        public SettingsManager TheSettings { get; set; }
+
+        public DefaultHolder UnderlayHolder { get; set; } // TODO: Enable replacement of Underlay holder with a module provided option
+
+        public SettingsHolder SettingsHolder { get; set; }
         #endregion
 
         #region Construct / Destruct
@@ -64,6 +69,16 @@ namespace Calcium
             NotificationList.Visibility = Visibility.Hidden;
             ViewModel?.ClearNotifications();
         }
+
+        private void Window_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ViewModel.OverlayVisibility = Visibility.Hidden;
+        }
+
+        private void Window_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ViewModel.OverlayVisibility = Visibility.Visible;
+        }
         #endregion
 
         #region Methods
@@ -73,17 +88,35 @@ namespace Calcium
             Title += ": " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             // Prep
-            MM = new ModuleManager();
-            SM = SettingsManager.Load();
+            TheModules = new ModuleManager();
+            TheSettings = SettingsManager.Load();
 
             // Pop Overlay Screen
-            if (MM.Overlay != null)
+            if (TheModules.Overlay != null)
             {
-                Overlay.Navigate(MM.Overlay);
+                Overlay.Navigate(TheModules.Overlay);
             }
 
             // Listen for errors in order to update badge
             ViewModel?.ListenForErrors();
+
+            // Prep Underlay
+            UnderlayHolder = new DefaultHolder();
+            PresentUnderlay();
+
+            SettingsHolder = new SettingsHolder();
+        }
+
+        public void PresentUnderlay()
+        {
+            // TODO: Prevent navigation if already active
+            Underlay.Navigate(UnderlayHolder);
+        }
+
+        public void PresentSettings()
+        {
+            // TODO: Prevent navigation if already active
+            Underlay.Navigate(SettingsHolder);
         }
         #endregion
     }
