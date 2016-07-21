@@ -13,6 +13,6 @@ namespace Calcium
 
         string ModuleName { get; }
 
-		Page OpeningPage { get; }
+		Page InitialPage { get; }
 	}
 }

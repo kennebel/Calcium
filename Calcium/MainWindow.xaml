@@ -10,7 +10,7 @@
         MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave">
     <Grid>
         <!-- Region Underlay -->
-        <Frame Name="Underlay" NavigationUIVisibility="Hidden" />
+        <Frame Name="Underlay" NavigationUIVisibility="Hidden" Margin="5" />
         <!-- EndRegion -->
         
         <!-- Region Overlay -->

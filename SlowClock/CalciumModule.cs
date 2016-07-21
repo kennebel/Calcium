@@ -10,7 +10,7 @@ namespace Calcium.SlowClock
 	public class CalciumModule : ICalciumModule
 	{
 		#region Fields
-		protected Page _OpeningPage;
+		protected Page _InitialPage;
 		#endregion
 
 		#region Properties
@@ -30,16 +30,16 @@ namespace Calcium.SlowClock
             }
         }
 
-		public Page OpeningPage
+		public Page InitialPage
 		{
 			get
 			{
-				if (_OpeningPage == null)
+				if (_InitialPage == null)
 				{
-					_OpeningPage = new ClockUI();
+					_InitialPage = new ClockUI();
 				}
 
-				return _OpeningPage;
+				return _InitialPage;
 			}
 		}
 		#endregion

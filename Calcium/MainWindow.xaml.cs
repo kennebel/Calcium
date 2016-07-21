@@ -101,7 +101,7 @@ namespace Calcium
             ViewModel?.ListenForErrors();
 
             // Prep Underlay
-            UnderlayHolder = new DefaultHolder();
+            UnderlayHolder = new DefaultHolder(TheModules, TheSettings);
             PresentUnderlay();
 
             SettingsHolder = new SettingsHolder();

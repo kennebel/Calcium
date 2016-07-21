@@ -20,9 +20,37 @@ namespace Calcium.Pages
     /// </summary>
     public partial class DefaultHolder : Page
     {
-        public DefaultHolder()
+        public DefaultHolder(ModuleManager theModules, SettingsManager theSettings)
         {
             InitializeComponent();
+
+            Setup(theModules, theSettings);
+        }
+
+        public void Setup(ModuleManager theModules, SettingsManager theSettings)
+        {
+            Content.Children.Clear();
+
+            string UtilityKey = "calcium.utility";
+            if (theModules.Modules.ContainsKey(UtilityKey))
+            {
+                RowDefinition AutoRow;
+                Frame Holder;
+                int RowCount = 0;
+
+                // TODO: Use settings to determine which utilities to load and in which order
+                foreach (var OneModule in theModules.Modules[UtilityKey])
+                {
+                    AutoRow = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
+                    Content.RowDefinitions.Add(AutoRow);
+
+                    Holder = new Frame() { NavigationUIVisibility = NavigationUIVisibility.Hidden };
+                    Holder.Navigate(OneModule.InitialPage);
+                    Grid.SetRow(Holder, RowCount);
+                    RowCount++;
+                    Content.Children.Add(Holder);
+                }
+            }
         }
     }
 }

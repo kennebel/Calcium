@@ -21,7 +21,7 @@ namespace Calcium
 
             if (Modules.ContainsKey("calcium.overlay"))
             {
-                Overlay = Modules["calcium.overlay"][0].OpeningPage; // TODO: Use settings to select proper one later
+                Overlay = Modules["calcium.overlay"][0].InitialPage; // TODO: Use settings to select proper one later
             }
         }
 
