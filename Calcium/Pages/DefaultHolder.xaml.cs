@@ -44,7 +44,7 @@ namespace Calcium.Pages
                     AutoRow = new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) };
                     Content.RowDefinitions.Add(AutoRow);
 
-                    Holder = new Frame() { NavigationUIVisibility = NavigationUIVisibility.Hidden };
+                    Holder = new Frame() { NavigationUIVisibility = NavigationUIVisibility.Hidden, Margin = new Thickness(5d) };
                     Holder.Navigate(OneModule.InitialPage);
                     Grid.SetRow(Holder, RowCount);
                     RowCount++;

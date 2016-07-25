@@ -49,7 +49,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppLauncherUI.xaml.cs">
+    <Compile Include="Models\AppLaunch.cs" />
+    <Compile Include="Pages\AppLauncherUI.xaml.cs">
       <DependentUpon>AppLauncherUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="CalciumModule.cs" />
@@ -66,6 +67,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Pages\AppSettings.xaml.cs">
+      <DependentUpon>AppSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AppLauncherViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -83,9 +88,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AppLauncherUI.xaml">
+    <Page Include="Pages\AppLauncherUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AppSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

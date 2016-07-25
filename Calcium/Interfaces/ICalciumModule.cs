@@ -15,4 +15,9 @@ namespace Calcium
 
 		Page InitialPage { get; }
 	}
+
+    public interface ICalciumModuleWithSettings : ICalciumModule
+    {
+        Page SettingsPage { get; }
+    }
 }

@@ -7,10 +7,11 @@ using System.Windows.Controls;
 
 namespace Calcium.AppLauncher
 {
-    public class CalciumModule : ICalciumModule
+    public class CalciumModule : ICalciumModuleWithSettings
     {
         #region Fields
         protected Page _InitialPage;
+        protected Page _SettingsPage;
         #endregion
 
         #region Properties
@@ -22,7 +23,6 @@ namespace Calcium.AppLauncher
                 {
                     _InitialPage = new AppLauncherUI();
                 }
-
                 return _InitialPage;
             }
         }
@@ -40,6 +40,18 @@ namespace Calcium.AppLauncher
             get
             {
                 return "calcium.utility";
+            }
+        }
+
+        public Page SettingsPage
+        {
+            get
+            {
+                if (_SettingsPage == null)
+                {
+                    _SettingsPage = new AppSettings();
+                }
+                return _SettingsPage;
             }
         }
         #endregion

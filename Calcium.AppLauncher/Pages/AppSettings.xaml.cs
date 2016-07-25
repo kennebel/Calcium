@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Calcium.AppLauncher
 {
     /// <summary>
-    /// Interaction logic for AppLauncherUI.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class AppLauncherUI : Page
+    public partial class AppSettings : Page
     {
-        public AppLauncherUI()
+        public AppSettings()
         {
             InitializeComponent();
         }
