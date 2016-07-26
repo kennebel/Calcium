@@ -19,5 +19,7 @@ namespace Calcium
     public interface ICalciumModuleWithSettings : ICalciumModule
     {
         Page SettingsPage { get; }
+
+        ISettingsManager TheSettings { set; }
     }
 }

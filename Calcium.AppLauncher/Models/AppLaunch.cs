@@ -8,9 +8,36 @@ namespace Calcium.AppLauncher
 {
     public class AppLaunch
     {
+        #region Constants
+        public const string DEFAULT_COLOR = "#00FF00";
+        #endregion
+
+        #region Fields
+        protected string _Color = DEFAULT_COLOR;
+        #endregion
+
+        #region Properties
         public string Name { get; set; }
+
         public string Target { get; set; }
+
         public string StartIn { get; set; }
-        public string Color { get; set; }
+
+        public string Arguments { get; set; }
+
+        public string Color
+        {
+            get
+            {
+                return _Color;
+            }
+            set
+            {
+                _Color = string.IsNullOrWhiteSpace(value) ? DEFAULT_COLOR : value;
+            }
+        }
+
+        // TODO: Add support for drop down style button for a compact set up
+        #endregion
     }
 }

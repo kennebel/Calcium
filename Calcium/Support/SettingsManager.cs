@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Calcium
 {
-    public class SettingsManager
+    public class SettingsManager : ISettingsManager
     {
         public const string SETTINGS_FOLDER = "Calcium";
         public const string SETTINGS_FILE = "Calcium.jset";

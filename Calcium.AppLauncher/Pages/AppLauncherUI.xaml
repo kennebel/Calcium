@@ -9,6 +9,6 @@
       Title="AppLauncherUI" Background="White">
 
     <Grid Name="Content">
-        
+
     </Grid>
 </Page>

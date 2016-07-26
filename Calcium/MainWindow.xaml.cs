@@ -88,8 +88,8 @@ namespace Calcium
             Title += ": " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             // Prep
-            TheModules = new ModuleManager();
             TheSettings = SettingsManager.Load();
+            TheModules = new ModuleManager(TheSettings);
 
             // Pop Overlay Screen
             if (TheModules.Overlay != null)

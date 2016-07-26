@@ -10,8 +10,9 @@ namespace Calcium.AppLauncher
     public class CalciumModule : ICalciumModuleWithSettings
     {
         #region Fields
-        protected Page _InitialPage;
-        protected Page _SettingsPage;
+        protected Page _InitialPage = null;
+        protected Page _SettingsPage = null;
+        protected ISettingsManager _TheSettings = null;
         #endregion
 
         #region Properties
@@ -52,6 +53,18 @@ namespace Calcium.AppLauncher
                     _SettingsPage = new AppSettings();
                 }
                 return _SettingsPage;
+            }
+        }
+
+        public ISettingsManager TheSettings
+        {
+            get
+            {
+                return _TheSettings;
+            }
+            set
+            {
+                _TheSettings = value;
             }
         }
         #endregion
