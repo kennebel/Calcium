@@ -30,6 +30,29 @@ namespace Calcium
             Save();
         }
 
+        public void SetSettings(string module, Dictionary<string, string> moduleSettings)
+        {
+            StoredSettings[module] = moduleSettings;
+            Save();
+        }
+
+        public Dictionary<string, string> GetSettings(string module, bool nullOnNotFound = true)
+        {
+            if (StoredSettings.ContainsKey(module))
+            {
+                return StoredSettings[module];
+            }
+
+            if (nullOnNotFound)
+            {
+                return null;
+            }
+            else
+            {
+                throw new Exception(string.Format("Settings not found: {0}/{1}", module));
+            }
+        }
+
         public string GetSetting(string module, string name, bool nullOnNotFound = true)
         {
             if (StoredSettings.ContainsKey(module) && StoredSettings[module].ContainsKey(name))

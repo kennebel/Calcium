@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,19 @@ namespace Calcium.AppLauncher
         }
 
         // TODO: Add support for drop down style button for a compact set up
+        public List<AppLaunch> SubElements { get; set; }
+        #endregion
+
+        #region Methods
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.None);
+        }
+
+        public static AppLaunch FromString(string jsonAppLaunch)
+        {
+            return JsonConvert.DeserializeObject<AppLaunch>(jsonAppLaunch);
+        }
         #endregion
     }
 }

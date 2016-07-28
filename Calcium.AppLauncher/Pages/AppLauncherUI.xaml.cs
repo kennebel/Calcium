@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -21,10 +22,6 @@ namespace Calcium.AppLauncher
     /// </summary>
     public partial class AppLauncherUI : Page
     {
-        #region Constants
-        public const int COLUMNS = 3;
-        #endregion
-
         #region Properties
         public AppLauncherViewModel ViewModel
         {
@@ -69,20 +66,25 @@ namespace Calcium.AppLauncher
         {
             // Prep
             Content.Children.Clear();
-            ViewModel.AppsToShow = new List<AppLaunch>();
 
-            // TODO: Pull list of applications from settings, also to do, make the settings screen work; temp list for testing
-            ViewModel.AppsToShow.Add(new AppLaunch() { Name = "RDP", Target = @"C:\Program Files (x86)\Microsoft\Remote Desktop Connection Manager\RDCMan.exe" });
-            ViewModel.AppsToShow.Add(new AppLaunch() { Name = "Calc", Target = @"C:\Windows\system32\calc.exe" });
-            ViewModel.AppsToShow.Add(new AppLaunch() { Name = "SQL", Target = @"C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\Ssms.exe" });
-            ViewModel.AppsToShow.Add(new AppLaunch() { Name = "putty", Target = @"C:\Users\cunninghamJ\Apps\putty\putty.exe" });
-            ViewModel.AppsToShow.Add(new AppLaunch() { Name = "pageant", Target = @"C:\Users\cunninghamJ\Apps\putty\pageant.exe" });
-            ViewModel.AppsToShow.Add(new AppLaunch() { Name = "PR", Target = @"C:\Program Files\Git\git-bash.exe", StartIn = @"C:\Users\cunninghamJ\Documents\SourceTree\plateau-replacement" });
+            ViewModel.AppsToShow = new List<AppLaunch>();
+            List<string> Apps = JsonConvert.DeserializeObject<List<string>>(CalciumModule.instance.TheSettings.GetSetting(CalciumModule.instance.ModuleName, "Apps"));
+            foreach (string OneApp in Apps)
+            {
+                ViewModel.AppsToShow.Add(AppLaunch.FromString(OneApp));
+            }
+
+            string TmpColumnCount = CalciumModule.instance.TheSettings.GetSetting(CalciumModule.instance.ModuleName, "ColumnCount");
+            if (!string.IsNullOrEmpty(TmpColumnCount))
+            {
+                int TmpInt = 0;
+                if (int.TryParse(TmpColumnCount,out TmpInt)) { ViewModel.ColumnCount = TmpInt; }
+            }
 
             // Build columns and rows
-            for (int i = 0; i < COLUMNS; i++) { Content.ColumnDefinitions.Add(new ColumnDefinition()); }
+            for (int i = 0; i < ViewModel.ColumnCount; i++) { Content.ColumnDefinitions.Add(new ColumnDefinition()); }
 
-            int Rows = Math.Max((int)Math.Ceiling((double)ViewModel.AppsToShow.Count / (double)COLUMNS), 2);
+            int Rows = Math.Max((int)Math.Ceiling((double)ViewModel.AppsToShow.Count / (double)ViewModel.ColumnCount), 2);
             for (int i = 0; i < Rows; i++) { Content.RowDefinitions.Add(new RowDefinition()); }
 
             // Build Buttons
@@ -98,7 +100,7 @@ namespace Calcium.AppLauncher
                 Grid.SetColumn(TmpButton, Col);
 
                 Col++;
-                if (Col >= COLUMNS)
+                if (Col >= ViewModel.ColumnCount)
                 {
                     Col = 0;
                     Row++;

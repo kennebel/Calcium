@@ -12,6 +12,10 @@ namespace Calcium
 
         void SetSetting(string module, string name, string value);
 
+        void SetSettings(string module, Dictionary<string, string> moduleSettings);
+
         string GetSetting(string module, string name, bool nullOnNotFound = true);
+
+        Dictionary<string, string> GetSettings(string module, bool nullOnNotFound = true);
     }
 }

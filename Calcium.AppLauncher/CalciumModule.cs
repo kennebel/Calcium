@@ -16,6 +16,8 @@ namespace Calcium.AppLauncher
         #endregion
 
         #region Properties
+        public static CalciumModule instance { get; private set; }
+
         public Page InitialPage
         {
             get
@@ -66,6 +68,13 @@ namespace Calcium.AppLauncher
             {
                 _TheSettings = value;
             }
+        }
+        #endregion
+
+        #region Construct / Destruct
+        public CalciumModule()
+        {
+            instance = this;
         }
         #endregion
     }
