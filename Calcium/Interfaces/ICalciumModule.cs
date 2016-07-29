@@ -20,6 +20,6 @@ namespace Calcium
     {
         Page SettingsPage { get; }
 
-        ISettingsManager TheSettings { set; }
+        ISettingsManager TheSettingsManager { set; }
     }
 }

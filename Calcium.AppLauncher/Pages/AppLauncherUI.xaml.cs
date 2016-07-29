@@ -23,28 +23,19 @@ namespace Calcium.AppLauncher
     public partial class AppLauncherUI : Page
     {
         #region Properties
-        public AppLauncherViewModel ViewModel
+        public Settings TheSettings
         {
             get
             {
-                return this.DataContext as AppLauncherViewModel;
-            }
-            set
-            {
-                this.DataContext = value;
+                return CalciumModule.instance.TheSettings;
             }
         }
         #endregion
 
         #region Construct / Destruct
-        public AppLauncherUI() : this(null) { }
-
-        public AppLauncherUI(AppLauncherViewModel viewModel)
+        public AppLauncherUI()
         {
             InitializeComponent();
-
-            ViewModel = viewModel ?? new AppLauncherViewModel();
-
             Setup();
         }
         #endregion
@@ -67,31 +58,17 @@ namespace Calcium.AppLauncher
             // Prep
             Content.Children.Clear();
 
-            ViewModel.AppsToShow = new List<AppLaunch>();
-            List<string> Apps = JsonConvert.DeserializeObject<List<string>>(CalciumModule.instance.TheSettings.GetSetting(CalciumModule.instance.ModuleName, "Apps"));
-            foreach (string OneApp in Apps)
-            {
-                ViewModel.AppsToShow.Add(AppLaunch.FromString(OneApp));
-            }
-
-            string TmpColumnCount = CalciumModule.instance.TheSettings.GetSetting(CalciumModule.instance.ModuleName, "ColumnCount");
-            if (!string.IsNullOrEmpty(TmpColumnCount))
-            {
-                int TmpInt = 0;
-                if (int.TryParse(TmpColumnCount,out TmpInt)) { ViewModel.ColumnCount = TmpInt; }
-            }
-
             // Build columns and rows
-            for (int i = 0; i < ViewModel.ColumnCount; i++) { Content.ColumnDefinitions.Add(new ColumnDefinition()); }
+            for (int i = 0; i < TheSettings.ColumnCount; i++) { Content.ColumnDefinitions.Add(new ColumnDefinition()); }
 
-            int Rows = Math.Max((int)Math.Ceiling((double)ViewModel.AppsToShow.Count / (double)ViewModel.ColumnCount), 2);
+            int Rows = Math.Max((int)Math.Ceiling((double)TheSettings.AppsToShow.Count / (double)TheSettings.ColumnCount), 2);
             for (int i = 0; i < Rows; i++) { Content.RowDefinitions.Add(new RowDefinition()); }
 
             // Build Buttons
             int Col = 0;
             int Row = 0;
             Button TmpButton = null;
-            foreach (AppLaunch OneApp in ViewModel.AppsToShow)
+            foreach (AppLaunch OneApp in TheSettings.AppsToShow)
             {
                 TmpButton = new Button() { Content = new Viewbox() { Child = new TextBlock() { Text = OneApp.Name } }, Tag = OneApp, Margin = new Thickness(2), Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(OneApp.Color)) };
                 TmpButton.Click += Shortcut_Click;
@@ -100,7 +77,7 @@ namespace Calcium.AppLauncher
                 Grid.SetColumn(TmpButton, Col);
 
                 Col++;
-                if (Col >= ViewModel.ColumnCount)
+                if (Col >= TheSettings.ColumnCount)
                 {
                     Col = 0;
                     Row++;

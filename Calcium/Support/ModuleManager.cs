@@ -42,7 +42,7 @@ namespace Calcium
 
                         if (CreateMe != null)
                         {
-                            if (CreateMe is ICalciumModuleWithSettings) { ((ICalciumModuleWithSettings)CreateMe).TheSettings = theSettings; }
+                            if (CreateMe is ICalciumModuleWithSettings) { ((ICalciumModuleWithSettings)CreateMe).TheSettingsManager = theSettings; }
                             if (!Modules.ContainsKey(CreateMe.ModuleType)) { Modules.Add(CreateMe.ModuleType, new List<ICalciumModule>()); }
                             Modules[CreateMe.ModuleType].Add(CreateMe);
                         }

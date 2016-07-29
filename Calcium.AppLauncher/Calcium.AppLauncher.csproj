@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AppLaunch.cs" />
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Pages\AppLauncherUI.xaml.cs">
       <DependentUpon>AppLauncherUI.xaml</DependentUpon>
     </Compile>
@@ -71,10 +72,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Pages\AppSettings.xaml.cs">
-      <DependentUpon>AppSettings.xaml</DependentUpon>
+    <Compile Include="Pages\AppSettingsUI.xaml.cs">
+      <DependentUpon>AppSettingsUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AppLauncherViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -97,7 +98,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\AppSettings.xaml">
+    <Page Include="Pages\AppSettingsUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

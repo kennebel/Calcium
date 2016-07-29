@@ -12,7 +12,8 @@ namespace Calcium.AppLauncher
         #region Fields
         protected Page _InitialPage = null;
         protected Page _SettingsPage = null;
-        protected ISettingsManager _TheSettings = null;
+        protected ISettingsManager _TheSettingsManager = null;
+        protected Settings _TheSettings = new Settings();
         #endregion
 
         #region Properties
@@ -52,13 +53,29 @@ namespace Calcium.AppLauncher
             {
                 if (_SettingsPage == null)
                 {
-                    _SettingsPage = new AppSettings();
+                    _SettingsPage = new AppSettingsUI();
                 }
                 return _SettingsPage;
             }
         }
 
-        public ISettingsManager TheSettings
+        public ISettingsManager TheSettingsManager
+        {
+            get
+            {
+                return _TheSettingsManager;
+            }
+            set
+            {
+                _TheSettingsManager = value;
+                if (value != null)
+                {
+                    TheSettings.Load();
+                }
+            }
+        }
+
+        public Settings TheSettings
         {
             get
             {
@@ -66,7 +83,7 @@ namespace Calcium.AppLauncher
             }
             set
             {
-                _TheSettings = value;
+                _TheSettings = value ?? new Settings();
             }
         }
         #endregion
