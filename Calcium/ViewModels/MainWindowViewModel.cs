@@ -12,6 +12,7 @@ namespace Calcium
         #region Fields
         protected int _NoticeBadgeCount = 0;
         protected List<string> _Errors = new List<string>();
+        protected Visibility _MiddlelayVisibility = Visibility.Hidden;
         protected Visibility _OverlayVisibility = Visibility.Visible;
         #endregion
 
@@ -55,6 +56,22 @@ namespace Calcium
             get
             {
                 return string.Join("\r\n\r\n", Errors);
+            }
+        }
+
+        public Visibility MiddlelayVisibility
+        {
+            get
+            {
+                return _MiddlelayVisibility;
+            }
+            set
+            {
+                if (_MiddlelayVisibility != value)
+                {
+                    _MiddlelayVisibility = value;
+                    OnPropertyChanged();
+                }
             }
         }
 

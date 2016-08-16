@@ -70,6 +70,11 @@ namespace Calcium
             ViewModel?.ClearNotifications();
         }
 
+        private void Settings_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
         private void Window_MouseEnter(object sender, MouseEventArgs e)
         {
             ViewModel.OverlayVisibility = Visibility.Hidden;

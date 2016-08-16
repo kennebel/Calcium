@@ -13,6 +13,13 @@
         <Frame Name="Underlay" NavigationUIVisibility="Hidden" Margin="5" />
         <!-- EndRegion -->
         
+        <!-- Region Settings -->
+        <Frame Name="Middlelay" NavigationUIVisibility="Hidden" Margin="5" Visibility="{Binding MiddlelayVisibility}" />
+        <Grid Background="DarkBlue" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="20" Height="20" Margin="5" MouseUp="Settings_MouseUp">
+            <Image Source="Resources/ic_build_white_48dp.png" />
+        </Grid>
+        <!-- EndRegion -->
+
         <!-- Region Overlay -->
         <Frame Name="Overlay" NavigationUIVisibility="Hidden" Background="White" Visibility="{Binding OverlayVisibility}" />
         <!-- EndRegion -->
