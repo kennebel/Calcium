@@ -15,7 +15,7 @@ namespace Calcium
         #endregion
 
         #region Methods
-        public static void Report(string message, int severity = 0, object sender = null)
+        public static void Report(string message, ErrorSeverity severity = ErrorSeverity.None, object sender = null)
         {
             OnErrorReport(sender, new Error() { Message = message, Severity = severity });
         }

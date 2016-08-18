@@ -82,7 +82,7 @@ namespace Calcium
             }
             catch (Exception ex)
             {
-                ErrorManager.Report(string.Format("Unable to load settings file ({0}): {1}", SettingsPath, ex.ToString()));
+                ErrorManager.Report(string.Format("Unable to load settings file ({0}): {1}", SettingsPath, ex.ToString()), ErrorSeverity.Warning);
             }
             return new SettingsManager();
         }
@@ -102,7 +102,7 @@ namespace Calcium
             }
             catch (Exception ex)
             {
-                ErrorManager.Report(string.Format("Unable to save settings file ({0}): {1}", SettingsPath, ex.ToString()));
+                ErrorManager.Report(string.Format("Unable to save settings file ({0}): {1}", SettingsPath, ex.ToString()), ErrorSeverity.Critical);
             }
         }
     }

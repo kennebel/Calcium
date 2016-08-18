@@ -45,10 +45,23 @@ namespace Calcium.AppLauncher
         {
             AppLaunch OneApp = (AppLaunch)((Button)sender).Tag;
 
-            ProcessStartInfo PSI = new ProcessStartInfo(OneApp.Target) { UseShellExecute = false };
-            if (!String.IsNullOrWhiteSpace(OneApp.Arguments)) { PSI.Arguments = OneApp.Arguments; }
-            if (!String.IsNullOrWhiteSpace(OneApp.StartIn)) { PSI.WorkingDirectory = OneApp.StartIn; }
-            Process.Start(PSI);
+            try
+            {
+                if (!System.IO.File.Exists(OneApp.Target))
+                {
+                    ErrorManager.Report("Missing App Launcher Target: " + OneApp.Target, ErrorSeverity.Critical);
+                    return;
+                }
+
+                ProcessStartInfo PSI = new ProcessStartInfo(OneApp.Target) { UseShellExecute = false };
+                if (!String.IsNullOrWhiteSpace(OneApp.Arguments)) { PSI.Arguments = OneApp.Arguments; }
+                if (!String.IsNullOrWhiteSpace(OneApp.StartIn)) { PSI.WorkingDirectory = OneApp.StartIn; }
+                Process.Start(PSI);
+            }
+            catch (Exception ex)
+            {
+                ErrorManager.Report(ex.ToString(), ErrorSeverity.Critical);
+            }
         }
         #endregion
 

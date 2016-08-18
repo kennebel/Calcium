@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 
 namespace Calcium
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
-	{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
         #region Properties
         public MainWindowViewModel ViewModel
         {
@@ -41,10 +41,12 @@ namespace Calcium
         public DefaultHolder UnderlayHolder { get; set; } // TODO: Enable replacement of Underlay holder with a module provided option
 
         public SettingsHolder SettingsHolder { get; set; }
+
+        public bool SettingsActive { get; protected set; }
         #endregion
 
         #region Construct / Destruct
-        public MainWindow() : this(viewModel:null)
+        public MainWindow() : this(viewModel: null)
         {
         }
 
@@ -55,7 +57,7 @@ namespace Calcium
             ViewModel = viewModel ?? new MainWindowViewModel();
 
             SetUp();
-		}
+        }
         #endregion
 
         #region Events
@@ -72,7 +74,7 @@ namespace Calcium
 
         private void Settings_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            
+            SwapUnderlayAndSettings();
         }
 
         private void Window_MouseEnter(object sender, MouseEventArgs e)
@@ -107,21 +109,32 @@ namespace Calcium
 
             // Prep Underlay
             UnderlayHolder = new DefaultHolder(TheModules, TheSettings);
-            PresentUnderlay();
+            PresentUnderlay(true);
 
             SettingsHolder = new SettingsHolder();
         }
 
-        public void PresentUnderlay()
+        public void PresentUnderlay(bool force = false)
         {
-            // TODO: Prevent navigation if already active
-            Underlay.Navigate(UnderlayHolder);
+            if (SettingsActive || force)
+            {
+                Underlay.Navigate(UnderlayHolder);
+                SettingsActive = false;
+            }
         }
 
         public void PresentSettings()
         {
-            // TODO: Prevent navigation if already active
-            Underlay.Navigate(SettingsHolder);
+            if (!SettingsActive)
+            {
+                Underlay.Navigate(SettingsHolder);
+                SettingsActive = true;
+            }
+        }
+
+        public void SwapUnderlayAndSettings()
+        {
+            if (SettingsActive) { PresentUnderlay(); } else { PresentSettings(); }
         }
         #endregion
     }
