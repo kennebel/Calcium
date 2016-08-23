@@ -74,11 +74,15 @@ namespace Calcium.AppLauncher
             else { ColumnCount = DEFAULT_COLUMNS; }
 
             // Apps
-            List<string> Apps = JsonConvert.DeserializeObject<List<string>>(SM.GetSetting(ModuleName, "Apps"));
-            foreach (string OneApp in Apps)
+            var RawSetting = SM.GetSetting(ModuleName, "Apps");
+            if (!string.IsNullOrWhiteSpace(RawSetting))
             {
-                AppsToShow.Add(AppLaunch.FromString(OneApp));
-                AppsToShowRaw.Add(JsonConvert.DeserializeObject<Dictionary<string, string>>(OneApp));
+                List<string> Apps = JsonConvert.DeserializeObject<List<string>>(RawSetting);
+                foreach (string OneApp in Apps)
+                {
+                    AppsToShow.Add(AppLaunch.FromString(OneApp));
+                    AppsToShowRaw.Add(JsonConvert.DeserializeObject<Dictionary<string, string>>(OneApp));
+                }
             }
         }
 
