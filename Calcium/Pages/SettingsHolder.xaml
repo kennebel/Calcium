@@ -6,9 +6,23 @@
       xmlns:local="clr-namespace:Calcium.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="Settings" Background="LightGreen">
+      Title="Settings">
 
     <Grid>
-        
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+            <ListView ItemsSource="{Binding ModulesWithSettings}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding ModuleName}" Tag="{Binding ModuleProper}" Click="ShowSubSettings_Click" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+        <Grid Name="SettingsAreaRig" Background="White" Visibility="Hidden">
+            <Frame Name="SettingsArea" NavigationUIVisibility="Hidden" Margin="0,30,0,0" />
+
+            <Button Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CancelSubSettings_Click" />
+            <Button Content="Save" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SaveSubSettings_Click" />
+        </Grid>
     </Grid>
 </Page>

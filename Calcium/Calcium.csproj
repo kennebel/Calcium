@@ -76,6 +76,7 @@
     <Compile Include="Support\ModuleManager.cs" />
     <Compile Include="Support\SettingsManager.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\SettingsHolderViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

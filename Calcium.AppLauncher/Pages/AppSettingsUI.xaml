@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Calcium.AppLauncher"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
+      Background="RosyBrown"
       Title="Settings">
 
     <Grid>

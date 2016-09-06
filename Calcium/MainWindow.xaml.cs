@@ -22,6 +22,8 @@ namespace Calcium
     public partial class MainWindow : Window
     {
         #region Properties
+        public static MainWindow instance { get; private set; }
+
         public MainWindowViewModel ViewModel
         {
             get
@@ -53,6 +55,7 @@ namespace Calcium
         public MainWindow(MainWindowViewModel viewModel)
         {
             InitializeComponent();
+            instance = this;
 
             ViewModel = viewModel ?? new MainWindowViewModel();
 
