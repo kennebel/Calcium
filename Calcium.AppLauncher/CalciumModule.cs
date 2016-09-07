@@ -11,7 +11,7 @@ namespace Calcium.AppLauncher
     {
         #region Fields
         protected Page _InitialPage = null;
-        protected Page _SettingsPage = null;
+        protected ISettingsPage _SettingsPage = null;
         protected ISettingsManager _TheSettingsManager = null;
         protected Settings _TheSettings = new Settings();
         #endregion
@@ -47,7 +47,7 @@ namespace Calcium.AppLauncher
             }
         }
 
-        public Page SettingsPage
+        public ISettingsPage SettingsPage
         {
             get
             {

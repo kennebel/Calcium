@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="Interfaces\IError.cs" />
     <Compile Include="Interfaces\ISettingsManager.cs" />
+    <Compile Include="Interfaces\ISettingsPage.cs" />
     <Compile Include="Pages\DefaultHolder.xaml.cs">
       <DependentUpon>DefaultHolder.xaml</DependentUpon>
     </Compile>

@@ -20,6 +20,7 @@ namespace Calcium.Pages
     /// </summary>
     public partial class SettingsHolder : Page
     {
+        #region Properties
         public SettingsHolderViewModel ViewModel
         {
             get
@@ -31,6 +32,9 @@ namespace Calcium.Pages
                 this.DataContext = value;
             }
         }
+
+        public ISettingsPage CurrentSubSettings { get; set; }
+        #endregion
 
         #region Construct / Destruct
         public SettingsHolder() : this(viewModel: null)
@@ -52,18 +56,21 @@ namespace Calcium.Pages
             var Selected = ((Button)sender).Tag as ICalciumModuleWithSettings;
             if (Selected != null)
             {
-                SettingsArea.Navigate(Selected.SettingsPage);
+                CurrentSubSettings = Selected.SettingsPage as ISettingsPage;
+                SettingsArea.Navigate(CurrentSubSettings);
                 SettingsAreaRig.Visibility = Visibility.Visible;
             }
         }
 
         private void CancelSubSettings_Click(object sender, RoutedEventArgs e)
         {
+            CurrentSubSettings.Cancel();
             SettingsAreaRig.Visibility = Visibility.Hidden;
         }
 
         private void SaveSubSettings_Click(object sender, RoutedEventArgs e)
         {
+            CurrentSubSettings.Save();
             SettingsAreaRig.Visibility = Visibility.Hidden;
         }
         #endregion

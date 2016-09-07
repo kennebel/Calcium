@@ -18,7 +18,7 @@ namespace Calcium.AppLauncher
     /// <summary>
     /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class AppSettingsUI : Page
+    public partial class AppSettingsUI : Page, ISettingsPage
     {
         #region Properties
         public SettingsViewModel ViewModel
@@ -49,6 +49,16 @@ namespace Calcium.AppLauncher
 
         #region Methods
         protected void Setup()
+        {
+            ViewModel.Load();
+        }
+
+        public void Save()
+        {
+            ViewModel.Save();
+        }
+
+        public void Cancel()
         {
             ViewModel.Load();
         }

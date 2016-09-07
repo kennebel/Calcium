@@ -6,10 +6,23 @@
       xmlns:local="clr-namespace:Calcium.AppLauncher"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Background="RosyBrown"
       Title="Settings">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         
+        <!-- Region Row 0, Column Count -->
+        <!-- EndRegion -->
+        
+        <!-- Region Row 1, Apps -->
+        <DataGrid ItemsSource="{Binding Apps}" Grid.Row="1" Grid.ColumnSpan="2"></DataGrid>
+        <!-- EndRegion -->
     </Grid>
 </Page>
