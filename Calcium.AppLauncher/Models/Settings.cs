@@ -47,18 +47,6 @@ namespace Calcium.AppLauncher
                 _AppsToShow = value ?? new List<AppLaunch>();
             }
         }
-
-        public List<Dictionary<string, string>> AppsToShowRaw
-        {
-            get
-            {
-                return _AppsToShowRaw;
-            }
-            set
-            {
-                _AppsToShowRaw = value ?? new List<Dictionary<string, string>>();
-            }
-        }
         #endregion
 
         #region Methods
@@ -77,12 +65,8 @@ namespace Calcium.AppLauncher
             var RawSetting = SM.GetSetting(ModuleName, "Apps");
             if (!string.IsNullOrWhiteSpace(RawSetting))
             {
-                List<string> Apps = JsonConvert.DeserializeObject<List<string>>(RawSetting);
-                foreach (string OneApp in Apps)
-                {
-                    AppsToShow.Add(AppLaunch.FromString(OneApp));
-                    AppsToShowRaw.Add(JsonConvert.DeserializeObject<Dictionary<string, string>>(OneApp));
-                }
+                List<AppLaunch> Apps = JsonConvert.DeserializeObject<List<AppLaunch>>(RawSetting);
+                Apps.ForEach(e => AppsToShow.Add(e));
             }
         }
 
@@ -94,11 +78,6 @@ namespace Calcium.AppLauncher
             NewSettings.Add("Apps", JsonConvert.SerializeObject(AppsToShow));
 
             SM.SetSettings(ModuleName, NewSettings);
-        }
-
-        public void RebuildApps()
-        {
-
         }
         #endregion
     }

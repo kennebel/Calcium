@@ -69,7 +69,7 @@ namespace Calcium.AppLauncher
 
         public void Save()
         {
-
+            TheSettings.Save();
         }
         #endregion
     }
