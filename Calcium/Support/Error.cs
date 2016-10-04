@@ -29,7 +29,7 @@ namespace Calcium
 
         public DateTime ReportedOn { get; set; }
 
-        public int Severity { get; set; }
+        public ErrorSeverity Severity { get; set; }
 
         public string DateFormat
         {
@@ -54,7 +54,7 @@ namespace Calcium
         #region Overrides
         public override string ToString()
         {
-            return string.Format("{0} ({1}): {2}", ReportedOn.ToString(DateFormat), Severity, Message);
+            return string.Format("{0} ({1}): {2}", ReportedOn.ToString(DateFormat), Severity.ToString(), Message);
         }
         #endregion
     }

@@ -15,17 +15,17 @@ namespace Calcium
 
         public Dictionary<string, List<ICalciumModule>> Modules { get; set; }
 
-        public ModuleManager()
+        public ModuleManager(ISettingsManager theSettings)
         {
-            LoadModules();
+            LoadModules(theSettings);
 
             if (Modules.ContainsKey("calcium.overlay"))
             {
-                Overlay = Modules["calcium.overlay"][0].OpeningPage; // TODO: Use settings to select proper one later
+                Overlay = Modules["calcium.overlay"][0].InitialPage; // TODO: Use settings to select proper one later
             }
         }
 
-        protected void LoadModules()
+        protected void LoadModules(ISettingsManager theSettings)
         {
             Modules = new Dictionary<string, List<ICalciumModule>>();
 
@@ -42,6 +42,7 @@ namespace Calcium
 
                         if (CreateMe != null)
                         {
+                            if (CreateMe is ICalciumModuleWithSettings) { ((ICalciumModuleWithSettings)CreateMe).TheSettingsManager = theSettings; }
                             if (!Modules.ContainsKey(CreateMe.ModuleType)) { Modules.Add(CreateMe.ModuleType, new List<ICalciumModule>()); }
                             Modules[CreateMe.ModuleType].Add(CreateMe);
                         }

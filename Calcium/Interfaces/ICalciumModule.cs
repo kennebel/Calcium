@@ -13,6 +13,13 @@ namespace Calcium
 
         string ModuleName { get; }
 
-		Page OpeningPage { get; }
+		Page InitialPage { get; }
 	}
+
+    public interface ICalciumModuleWithSettings : ICalciumModule
+    {
+        ISettingsPage SettingsPage { get; }
+
+        ISettingsManager TheSettingsManager { set; }
+    }
 }

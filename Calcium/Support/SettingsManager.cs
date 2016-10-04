@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Calcium
 {
-    public class SettingsManager
+    public class SettingsManager : ISettingsManager
     {
         public const string SETTINGS_FOLDER = "Calcium";
         public const string SETTINGS_FILE = "Calcium.jset";
@@ -28,6 +28,29 @@ namespace Calcium
             }
             StoredSettings[module][name] = value;
             Save();
+        }
+
+        public void SetSettings(string module, Dictionary<string, string> moduleSettings)
+        {
+            StoredSettings[module] = moduleSettings;
+            Save();
+        }
+
+        public Dictionary<string, string> GetSettings(string module, bool nullOnNotFound = true)
+        {
+            if (StoredSettings.ContainsKey(module))
+            {
+                return StoredSettings[module];
+            }
+
+            if (nullOnNotFound)
+            {
+                return null;
+            }
+            else
+            {
+                throw new Exception(string.Format("Settings not found: {0}/{1}", module));
+            }
         }
 
         public string GetSetting(string module, string name, bool nullOnNotFound = true)
@@ -59,7 +82,7 @@ namespace Calcium
             }
             catch (Exception ex)
             {
-                ErrorManager.Report(string.Format("Unable to load settings file ({0}): {1}", SettingsPath, ex.ToString()));
+                ErrorManager.Report(string.Format("Unable to load settings file ({0}): {1}", SettingsPath, ex.ToString()), ErrorSeverity.Warning);
             }
             return new SettingsManager();
         }
@@ -79,7 +102,7 @@ namespace Calcium
             }
             catch (Exception ex)
             {
-                ErrorManager.Report(string.Format("Unable to save settings file ({0}): {1}", SettingsPath, ex.ToString()));
+                ErrorManager.Report(string.Format("Unable to save settings file ({0}): {1}", SettingsPath, ex.ToString()), ErrorSeverity.Critical);
             }
         }
     }
