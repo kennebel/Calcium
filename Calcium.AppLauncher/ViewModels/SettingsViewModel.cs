@@ -69,6 +69,7 @@ namespace Calcium.AppLauncher
 
         public void Save()
         {
+            TheSettings.ColumnCount = ColumnCount;
             TheSettings.Save();
         }
         #endregion

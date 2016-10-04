@@ -19,6 +19,8 @@
         </Grid.ColumnDefinitions>
         
         <!-- Region Row 0, Column Count -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Column Count:" VerticalAlignment="Center" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ColumnCount}" VerticalAlignment="Center" />
         <!-- EndRegion -->
         
         <!-- Region Row 1, Apps -->
